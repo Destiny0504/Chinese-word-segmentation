@@ -1,1 +1,1 @@
-# Chinese-word-segmentation
+# Advancing Multi-Criteria Chinese Word Segmentation Through Criterion Classification and Denoising

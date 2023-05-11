@@ -1,0 +1,7 @@
+torch==2.0.1
+sklearn==0.0
+numpy==1.23.4
+pandas==1.4.4
+transformers==4.23.1
+tqdm==4.64.1
+tensorboard==2.10.1
