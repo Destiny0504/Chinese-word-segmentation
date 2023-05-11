@@ -1,18 +1,19 @@
-import torch
-import numpy as np
 import random
+
+import numpy as np
+import torch
 
 
 def set_seed(SEED: int = None):
-  
-  assert SEED != None
 
-  random.seed(SEED)
-  np.random.seed(SEED)
-  torch.manual_seed(SEED)
-  torch.cuda.manual_seed_all(SEED)
+    assert SEED != None
 
-  if torch.cuda.is_available():
-    # Disable cuDNN benchmark for deterministic selection on algorithm.
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.deterministic = True
+    random.seed(SEED)
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+    torch.cuda.manual_seed_all(SEED)
+
+    if torch.cuda.is_available():
+        # Disable cuDNN benchmark for deterministic selection on algorithm.
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True

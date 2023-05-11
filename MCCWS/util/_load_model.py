@@ -1,9 +1,10 @@
 import torch
+
 import MCCWS.model
 
 
 def load_model(model, exp_name, checkpoint: int = 0):
-  """
+    """
   ===================================================================================
     Usage :
                             This function is for loading your model which have been \
@@ -25,8 +26,10 @@ def load_model(model, exp_name, checkpoint: int = 0):
 
   ===================================================================================
   """
-  model.load_state_dict(torch.load(
-    f'./exp/{exp_name}/step_{checkpoint}.model',
-    map_location='cpu',
-  ))
-  return model
+    model.load_state_dict(
+        torch.load(
+            f"./exp/{exp_name}/step_{checkpoint}.model",
+            map_location="cpu",
+        )
+    )
+    return model
