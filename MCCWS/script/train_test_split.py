@@ -33,6 +33,11 @@ def get_args():
 def main(args):
     MCCWS.util.set_seed(42)
     dataset = {"[SET]": [args.split_dataset]}
+    assert (
+        args.split_dataset != ""
+        and args.new_train_file_path != ""
+        and args.new_train_file_path != ""
+    )
     preprocessed_dataset = MCCWS.preprocess.split_dataset(datasets=dataset)
     with open(args.split_dataset, "w") as f:
         for data in preprocessed_dataset.data:

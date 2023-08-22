@@ -3,24 +3,21 @@ import transformers
 
 
 def load_scheduler(optimizer, num_warmup_steps: int = 0, num_training_steps: int = 0):
+    """Load the scheduler for your model
 
-    # if scheduler_name == 'step':
-    #   return torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=scheduler_step, gamma=gamma)
+    Args:
+        optimizer (torch.optim.AdamW): The optimizer use for training.
+        num_warmup_steps (int): A generator that we can fed the model into \
+            the optimizer. Defaults to None.
+        weight_decay (int): The value of weight decay. Defaults to 1e-2.
 
-    # if scheduler_name == 'plateau':
-    #   return torch.optim.lr_scheduler.ReduceLROnPlateau(
-    #     optimizer=optimizer, patience=1, mode='max', factor=gamma, verbose=True
-    #   )
-    # if scheduler_name == 'linear':
-
+    Returns:
+        torch.optim.lr_scheduler.LambdaLR : Scheduler used for training.
     """
-    Load the scheduler for your model
-    ------------------------------------------
-    BertTokenizerFast is for bert -> PreTrainedTokenizerFast can use in general case
-    """
+
     if num_training_steps < num_warmup_steps:
         raise ValueError("Training step should be larger than warmup step.")
-    if num_training_steps == 0:
+    if num_training_steps < 0:
         raise ValueError("Training step should be larger than 0.")
 
     return transformers.get_linear_schedule_with_warmup(

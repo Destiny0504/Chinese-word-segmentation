@@ -17,8 +17,16 @@ class preprocess:
                 # self.data = self.replace_num_eng_combination(data)
 
     def fullwidth2halfwidth(self, data):
+        """Convert full width character to half width character
+
+        Args:
+            data (List[str]): Sentences which needs to convert to half width.
+
+        Returns:
+            converted_str (List[str]): Converted sentences.
+        """
         next_line = re.compile(r"\n")
-        tmp = []
+        converted_str = list()
         for string in data:
             string = next_line.sub("", string)
             sentence = ""
@@ -33,33 +41,44 @@ class preprocess:
                 elif 65281 <= character <= 65374:
                     character -= 65248
                 sentence += chr(character)
-            tmp.append(sentence)
-        return tmp
+            converted_str.append(sentence)
+        return converted_str
 
     def replace_num(self, data):
-        """_summary_
+        """Replace the numbers in the dataset with a character '0'.
 
         Args:
-            data (_type_): _description_
+            data (List[str]): Sentences which need to be preprocessed.
 
         Returns:
-            _type_: _description_
+            data (List[str]): Converted sentences.
         """
         numbers = re.compile(r"((-|\+)?(\d+)([\.|·/∶:]\d+)?%?)+")
         data = list(map(lambda x: numbers.sub("0", x), data))
         return data
 
     def replace_eng(self, data):
-        """
-        find the words which includes alphabets
+        """Replace the alphabets in the dataset with a character 'a'.
+
+        Args:
+            data (List[str]): Sentences which need to be preprocessed.
+
+        Returns:
+            data (List[str]): Converted sentences.
         """
         english_char = re.compile(r"[A-Za-z_.]+")
         data = list(map(lambda x: english_char.sub("a", x), data))
         return data
 
     def replace_num_eng_combination(self, data):
-        """
-        find the words which includes alphabets and numbers
+        """Replace a word combined with number and alphabet in the dataset with a character 'c'.
+            (not used)
+
+        Args:
+            data (List[str]): Sentences which need to be preprocessed.
+
+        Returns:
+            data (List[str]): Converted sentences.
         """
         combination = re.compile(r"(a|0){2,}")
         data = list(map(lambda x: combination.sub("c", x), data))
@@ -85,6 +104,7 @@ class preprocess:
         return recovered_data
 
     def test_data(self):
+        # a function to test the your converted data
         test_data = []
         punctuation = re.compile(r"^[。！？：；…+、，（）“”’,;!?、,]+$")
         for idx, data in enumerate(self.data):

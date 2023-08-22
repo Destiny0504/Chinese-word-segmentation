@@ -14,14 +14,14 @@ class CWSmodel(nn.Module):
 
     ===================================================================================
       Input :
-      
-      total_token (int) :     Resize the mo
+
+      total_token (int) :     Resize the pretrained model's word embedding size.
 
       one_type (bool) :       This argument is for changing the dataset into          \
-                              traditional Chinese or simplified Chinese. 
-      
+                              traditional Chinese or simplified Chinese.
+
     ===================================================================================
-      Output :                
+      Output :
                               A dictionary that stored the path of dataset which is   \
                               going to use for training.
 
@@ -33,8 +33,10 @@ class CWSmodel(nn.Module):
         self.pretrained_model = transformers.BertModel.from_pretrained(model_name)
         self.pretrained_model.resize_token_embeddings(total_token)
 
-        # Segmentor
+        # Word Segmentor
         self.segmentor = nn.Linear(in_features=768, out_features=4)
+
+        # Word Segmentor (2 layer ver.)
         # self.segmentor = nn.Sequential(
         #   nn.Linear(in_features=768, out_features=48),
         #   nn.LayerNorm(48),

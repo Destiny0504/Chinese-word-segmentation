@@ -92,10 +92,15 @@ def get_args():
 
 
 def main(args):
+    """The whole training process.
+
+    Args:
+        args (argparse.Namespace): The arguments we used in our work, such as \
+            hyperparameters and model. 
+    """
 
     EPOCH = args.epoch
     DEVICE = f"cuda:{args.gpu}"
-    # DEVICE = f'cpu'
     LOG_STEP = args.save_step
     SAVE_STEP = args.save_step
     MODEL_NAME = args.model_name

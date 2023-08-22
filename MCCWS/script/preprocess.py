@@ -30,9 +30,6 @@ def main(args):
     dataset = {"[SET]": [args.original_gold_path]}
     preprocessed_dataset = MCCWS.preprocess.preprocess(datasets=dataset)
 
-    # print(preprocessed_dataset.data[13733])
-    # print(preprocessed_dataset.test_data()[13733])
-    # print(preprocessed_dataset.test_data())
     with open(f"{args.original_gold_path}", "w") as f:
         for data in preprocessed_dataset.original_data:
             f.write(data + "\n")

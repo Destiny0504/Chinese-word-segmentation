@@ -35,6 +35,12 @@ class split_dataset:
         return tmp
 
     def split_data(self):
+        """Split the dataset into training and testing set.
+           The training set would have nine-tenth of data in the original dataset.
+
+        Returns:
+            _type_: _description_
+        """
         return train_test_split(
             self.data, test_size=0.1, random_state=42, shuffle=False
         )

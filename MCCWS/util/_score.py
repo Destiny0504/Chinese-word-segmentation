@@ -10,9 +10,24 @@ from MCCWS.dataset import CWSDataset
 
 
 def preprocess(data, tokenizer: transformers.PreTrainedTokenizerFast):
-    # This tokenizer will output the tokenized string's index
-    # [B, S]
-    # return_tensor = 'pt' -> return pyTorch
+    """This function is for tokenization.
+
+    Args:
+        data (List[Tuple]): The data fetched from dataset. There are three elements \
+                            in each tuple. The first one is the text with spaces    \
+                            between each character. The second one is the original  \
+                            text to tokenized. The last one idicates whether that   \
+                            this input text is finished or not. 
+                            (Some data are longer than the model's max length, so we\
+                            need to split the kind of data into two pieces.) 
+                             
+        tokenizer (transformers.PreTrainedTokenizerFast): tokenizer
+
+    Returns:
+        tokenized_str : tokenizied input data.
+        text : the original text
+        short_input :
+    """
     tokenized_str = tokenizer(
         [x[0] for x in data],
         truncation=True,
@@ -20,7 +35,10 @@ def preprocess(data, tokenizer: transformers.PreTrainedTokenizerFast):
         padding="longest",
         return_tensors="pt",
     )
-    return tokenized_str, [x[1] for x in data], [x[2] for x in data]
+
+    text, short_input = [x[1] for x in data], [x[2] for x in data]
+
+    return tokenized_str, text, short_input
 
 
 def valid(
@@ -30,7 +48,20 @@ def valid(
     step: int,
     device: str,
 ) -> float:
+    """In this funciton, we first postprocess the testing data. The word that transformed \
+        to 'a' or '0' should be recovered. Then we use the scoring scripts from sighan to \
+        evaluate our model's performance.
 
+    Args:
+        exp_file (str): The file to store the evaluation result.
+        criteria (str): Which dataset we are evaulating.
+        step (int): The step you store your model. We store each model with a step, so we \
+            need this information to load a specific model to inference.
+        device (str): The device use for evaluation.
+
+    Returns:
+        F1 score (flaot) : The F1 score result. 
+    """
     assert "cuda" in device or "cpu" in device
 
     try:
@@ -104,8 +135,8 @@ def valid(
             f.close()
             os.system(
                 f"python3 -m MCCWS.script.postprocess \
-          --original_test_gold_path ./icwb2-data/gold/{dataset_name[1:-1].lower()}_valid.utf8 \
-          --test_file ./exp/result/{exp_file}/valid.txt"
+                --original_test_gold_path ./icwb2-data/gold/{dataset_name[1:-1].lower()}_valid.utf8 \
+                --test_file ./exp/result/{exp_file}/valid.txt"
             )
             os.system(
                 f"perl icwb2-data/scripts/score icwb2-data/gold/valid_training_words.txt \
@@ -130,7 +161,20 @@ def valid(
 
 
 def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
+    """In this funciton, we first postprocess the testing data. The word that transformed \
+        to 'a' or '0' should be recovered. Then we use the scoring scripts from sighan to \
+        evaluate our model's performance.
 
+    Args:
+        exp_file (str): The file to store the evaluation result.
+        criteria (str): Which dataset we are evaulating.
+        step (int): The storing period of model.  
+        dataset_token (str): The criterion token placed at the beginning of each datum.
+
+    Returns:
+        F1 score (flaot) : The F1 score result. 
+        OOV recall (flaot) : The OOV recall result.
+    """
     F1 = re.compile(r"=== F MEASURE:\s+0.(\d+)")
     OOV = re.compile(r"=== OOV Recall Rate:\s+0.(\d+)")
 

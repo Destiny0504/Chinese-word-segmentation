@@ -1,12 +1,17 @@
 import transformers
 
 
-def load_tokenizer(model_name):
+def load_tokenizer(model_name: str = "bert-base-chinese"):
+    """Load the tokenizer for your model and add some special tokens.
+
+    Args:
+        model_name (str): The model name which used as a base model for CWS. \
+            The model name need to find in Hugging Face.
+
+    Returns:
+        transformers.BertTokenizerFast : A pretrained tokenizer.
     """
-    Load the tokenizer for your model
-    ------------------------------------------
-    BertTokenizerFast is for bert -> PreTrainedTokenizerFast can use in general case
-    """
+
     return transformers.BertTokenizerFast.from_pretrained(
         model_name,
         pad_token="[PAD]",

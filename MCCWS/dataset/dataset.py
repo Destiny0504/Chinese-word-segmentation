@@ -144,17 +144,17 @@ class CWSDataset(Dataset):
         return " ".join(tmp[: max_length_idx + 1]), " ".join(tmp[max_length_idx + 1 :])
 
     def split_string(self, dataset: list):
-        """
-        Some data in [PKU], [MSR], and [SXU] dataset is longer than 512. In       \
-        other words, it couldn't be the input of Bert, so we need the to find the \
-        nearest break point for the data and split the data into 2 pieces.
+        """_summary_
+			Some data in [PKU], [MSR], and [SXU] dataset is longer than 512. In       \
+			other words, it couldn't be the input of Bert, so we need the to find the \
+			nearest break point for the data and split the data into 2 pieces.
 
-    Args:
-        dataset (list): _description_
+		Args:
+			dataset (list): _description_
 
-    Returns:
-        _type_: _description_
-    """
+		Returns:
+			_type_: _description_
+		"""
 
         space_pattern = re.compile(r"\s+")
         retrun_data = []
