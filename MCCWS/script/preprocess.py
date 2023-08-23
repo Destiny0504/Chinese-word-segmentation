@@ -1,4 +1,6 @@
 import argparse
+import os
+import re
 
 import MCCWS.preprocess
 import MCCWS.util
@@ -26,6 +28,12 @@ def get_args():
 
 def main(args):
     MCCWS.util.set_seed(42)
+
+    dir_name = re.findall(r"(.+)/[^/]+$", args.new_path)
+    try:
+        os.makedirs(f"{dir_name[0]}")
+    except:
+        pass
 
     dataset = {"[SET]": [args.original_gold_path]}
     preprocessed_dataset = MCCWS.preprocess.preprocess(datasets=dataset)

@@ -1,4 +1,6 @@
 import argparse
+import os
+import re
 
 import MCCWS.preprocess
 import MCCWS.util
@@ -39,6 +41,13 @@ def main(args):
         and args.new_train_file_path != ""
     )
     preprocessed_dataset = MCCWS.preprocess.split_dataset(datasets=dataset)
+
+    dir_name = re.findall(r"([^/]+)/[^/]+$", args.new_train_file_path)
+    try:
+        os.makedirs(f"{dir_name[0]}")
+    except:
+        pass
+
     with open(args.split_dataset, "w") as f:
         for data in preprocessed_dataset.data:
             f.write(data + "\n")

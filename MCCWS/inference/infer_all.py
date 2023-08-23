@@ -59,7 +59,7 @@ def get_args():
         type=str,
     )
     parser.add_argument(
-        "--dataset_token",
+        "--criteria_token",
         default="[AS]",
         help="The criteria token put in front of each data.",
         type=str,
