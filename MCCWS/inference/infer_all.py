@@ -107,7 +107,7 @@ def main(args):
             dataset = CWSDataset(
                 {dataset_name: dataset_path},
                 train_set=False,
-                criterion_token=args.dataset_token,
+                criterion_token=args.criteria_token,
             )
             data_loader = DataLoader(
                 dataset=dataset,
@@ -118,7 +118,7 @@ def main(args):
             test_data = tqdm(data_loader)
             with torch.no_grad():
                 f = open(
-                    f"./exp/result/{EXP_FILE}/{ckpt}_{dataset_name}_{args.dataset_token}.txt",
+                    f"./exp/result/{EXP_FILE}/{ckpt}_{dataset_name}_{args.criteria_token}.txt",
                     "w",
                 )
                 for data, text, short_input in test_data:
@@ -170,22 +170,24 @@ def main(args):
             exp_file=f"{EXP_FILE}",
             criteria=args.testset_token[0],
             step=ckpt,
-            dataset_token=args.dataset_token,
+            dataset_token=args.criteria_token,
         )
 
         with open(f"./exp/result/{EXP_FILE}/F1_score.txt", "a") as f:
             f.write(f"checkpoint : {ckpt} F1 : {F1_score} OOV_recall : {OOV_recall}\n")
-        if args.dataset_token != "[UNC]":
+        if args.criteria_token != "[UNC]":
             writer.add_scalar(f"{args.testset_token[0]}/F1_score", F1_score, ckpt)
             writer.add_scalar(f"{args.testset_token[0]}/OOV_recall", OOV_recall, ckpt)
             if ckpt == args.end_checkpoint:
                 time.sleep(1)
         else:
             writer.add_scalar(
-                f"{args.dataset_token}/{args.testset_token[0]}_F1_score", F1_score, ckpt
+                f"{args.criteria_token}/{args.testset_token[0]}_F1_score",
+                F1_score,
+                ckpt,
             )
             writer.add_scalar(
-                f"{args.dataset_token}/{args.testset_token[0]}_OOV_recall",
+                f"{args.criteria_token}/{args.testset_token[0]}_OOV_recall",
                 OOV_recall,
                 ckpt,
             )

@@ -185,7 +185,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/as_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/as_training_words.utf8 \
       icwb2-data/gold/as_test_gold.utf8 "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -196,7 +196,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/cityu_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/cityu_training_words.utf8 \
       icwb2-data/gold/cityu_test_gold.utf8 "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -207,7 +207,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/msr_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/msr_training_words.utf8 \
       icwb2-data/gold/msr_test_gold.utf8 "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -218,7 +218,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/pku_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/pku_training_words.utf8 \
       icwb2-data/gold/pku_test_gold.utf8 "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -229,7 +229,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/ctb6_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/ctb6_training_words.utf8 \
       icwb2-data/gold/ctb6_test_gold.utf8 "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -240,7 +240,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/cnc_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/cnc_training_words.utf8 \
       icwb2-data/gold/cnc_test_gold.txt "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -251,7 +251,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/sxu_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/sxu_training_words.utf8 \
       icwb2-data/gold/sxu_test_gold.txt "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -262,7 +262,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/ud_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/ud_training_words.utf8 \
       icwb2-data/gold/ud_test_gold.txt "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -273,7 +273,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/wtb_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/wtb_training_words.utf8 \
       icwb2-data/gold/wtb_test_gold.txt "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
@@ -284,7 +284,7 @@ def score(exp_file: str, criteria: str, step: int, dataset_token: str) -> float:
         --test_file ./exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt"
         )
         os.system(
-            "perl icwb2-data/scripts/score_simple icwb2-data/gold/zx_training_words.utf8 \
+            "perl icwb2-data/scripts/score icwb2-data/gold/zx_training_words.utf8 \
       icwb2-data/gold/zx_test_gold.txt "
             + f"exp/result/{exp_file}/{step}_{criteria}_{dataset_token}.txt > score.utf8"
         )
